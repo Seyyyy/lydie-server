@@ -1,0 +1,12 @@
+query GetStore($id: ID!) {
+  getStore(id: $id) {
+    id
+  }
+}
+
+mutation CreateStore($name: String!) {
+  createStore(name: $name) {
+    id
+    name
+  }
+}

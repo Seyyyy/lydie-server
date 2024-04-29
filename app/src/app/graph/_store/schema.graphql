@@ -1,0 +1,12 @@
+type Store {
+  id: ID!
+  name: String
+}
+
+type Query {
+  getStore(id: ID!): Store
+}
+
+type Mutation {
+  createStore(name: String!): Store
+}
