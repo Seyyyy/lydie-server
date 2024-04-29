@@ -11,10 +11,19 @@ export const Temp = () => {
     const res = await sampleClient.GetUser({ id: "test" });
     console.log(res.data);
   };
+
+  const mutation = async () => {
+    console.log("mutation");
+    const graphQLClient = new GraphQLClient("http://localhost:3000/graph");
+    const sampleClient = getSdk(graphQLClient);
+    const res = await sampleClient.CreateUser({ username: "test" });
+    console.log(res.data);
+  };
   return (
     <div>
       <p>Temp</p>
       <button onClick={onClick}>Click me</button>
+      <button onClick={mutation}>Mutation</button>
     </div>
   );
 };

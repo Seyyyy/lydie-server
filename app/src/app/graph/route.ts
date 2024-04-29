@@ -12,6 +12,15 @@ const resolvers: Resolvers = {
       };
     },
   },
+  Mutation: {
+    createUser: async (_parent, args, _context, _info) => {
+      console.log("GQLリクエスト", args);
+      return {
+        id: "success",
+        username: args.username,
+      };
+    },
+  },
 };
 
 const schema = makeExecutableSchema({
