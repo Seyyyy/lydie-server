@@ -2,6 +2,7 @@
 
 import { GraphQLClient } from "graphql-request";
 import { getSdk } from "@/gql/client";
+import { Button } from "@/app/_components/Button/Button";
 
 export const Temp = () => {
   const onClick = async () => {
@@ -22,8 +23,8 @@ export const Temp = () => {
   return (
     <div>
       <p>Temp</p>
-      <button onClick={onClick}>Click me</button>
-      <button onClick={mutation}>Mutation</button>
+      <Button label="Query" onClick={onClick} />
+      <Button label="Mutation" onClick={mutation} />
     </div>
   );
 };

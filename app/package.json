@@ -11,7 +11,9 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma db push",
     "db:seed": "prisma db seed",
-    "db:data-reset": "prisma db push --force-reset && prisma db seed"
+    "db:data-reset": "prisma db push --force-reset && prisma db seed",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
@@ -23,18 +25,29 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.3.3",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/typescript": "^4.0.6",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.2.0",
     "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@storybook/addon-essentials": "^8.0.9",
+    "@storybook/addon-interactions": "^8.0.9",
+    "@storybook/addon-links": "^8.0.9",
+    "@storybook/addon-onboarding": "^8.0.9",
+    "@storybook/blocks": "^8.0.9",
+    "@storybook/nextjs": "^8.0.9",
+    "@storybook/react": "^8.0.9",
+    "@storybook/test": "^8.0.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "eslint-plugin-storybook": "^0.8.0",
     "postcss": "^8",
     "prisma": "^5.13.0",
+    "storybook": "^8.0.9",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"
