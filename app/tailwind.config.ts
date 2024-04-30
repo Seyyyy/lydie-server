@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
-import { darkColors, lightColors, fontSize } from "./src/token.config";
+import {
+  darkColors,
+  lightColors,
+  fontSize,
+} from "./src/app/_tokens/token.config";
 
 const config: Config = {
   content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
