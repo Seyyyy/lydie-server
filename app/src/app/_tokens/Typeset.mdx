@@ -1,0 +1,62 @@
+import { Meta, Typeset } from "@storybook/blocks";
+import { fontSize } from "../../token.config.ts";
+
+<Meta title="Tokens/Typography" />
+
+export const SampleText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+# Paragraph
+
+**Size:** {fontSize["size-paragraph"]}
+
+<Typeset
+  fontSizes={[fontSize["size-paragraph"]]}
+  fontWeight={900}
+  sampleText={SampleText}
+  fontFamily={'"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'}
+/>
+
+# Heading 1
+
+**Size:** {fontSize["size-h1"]}
+
+<Typeset
+  fontSizes={[fontSize["size-h1"]]}
+  fontWeight={900}
+  sampleText={SampleText}
+  fontFamily={'"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'}
+/>
+
+# Heading 2
+
+**Size:** {fontSize["size-h2"]}
+
+<Typeset
+  fontSizes={[fontSize["size-h2"]]}
+  fontWeight={900}
+  sampleText={SampleText}
+  fontFamily={'"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'}
+/>
+
+# Heading 3
+
+**Size:** {fontSize["size-h3"]}
+
+<Typeset
+  fontSizes={[fontSize["size-h3"]]}
+  fontWeight={900}
+  sampleText={SampleText}
+  fontFamily={'"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'}
+/>
+
+# Button
+
+**Size:** {fontSize["size-button"]}
+
+<Typeset
+  fontSizes={[fontSize["size-button"]]}
+  fontWeight={900}
+  sampleText={SampleText}
+  fontFamily={'"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'}
+/>

@@ -1,0 +1,19 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { darkColors, lightColors } from "../../token.config.ts";
+
+<Meta title="Tokens/Colors" />
+
+<ColorPalette>
+    <ColorItem
+        title="dark theme"
+        subtitle="Dark theme colors"
+        colors={{ ...darkColors }}
+    />
+
+    <ColorItem
+        title="light theme"
+        subtitle="Light theme colors"
+        colors={{ ...lightColors }}
+    />
+
+</ColorPalette>
