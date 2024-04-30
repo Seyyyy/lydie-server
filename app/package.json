@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gqlgen": "graphql-codegen --config codegen.ts"
+    "gqlgen": "graphql-codegen --config codegen.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma db push",
+    "db:seed": "prisma db seed",
+    "db:data-reset": "prisma db push --force-reset && prisma db seed"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "graphql-tools": "^9.0.1",
@@ -29,7 +34,12 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
+    "prisma": "^5.13.0",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts"
   }
 }

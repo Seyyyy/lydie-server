@@ -37,3 +37,5 @@ next-env.d.ts
 
 # graphql
 src/gql
+
+.env

@@ -1,0 +1,26 @@
+datasource db {
+  provider     = "postgresql"
+  url          = env("SECRET_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+    id String @id @default(uuid()) // 主キー
+    name String // ユーザー名
+    store Store[] // Storeのリレーション
+    updatedAt DateTime @default(now())
+    createdAt DateTime @default(now())
+}
+
+model Store {
+    id String @id @default(uuid()) // 主キー
+    userId String // UserのID
+    title String // 画像のタイトル
+    updatedAt DateTime @default(now())
+    createdAt DateTime @default(now())
+    user User @relation(fields: [userId], references: [id])
+}
