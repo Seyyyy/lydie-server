@@ -1,6 +1,7 @@
 import { graphql } from "graphql";
 import { Resolvers, typeDefs } from "@/gql/server";
 import { makeExecutableSchema } from "graphql-tools";
+import prisma from "@/app/_repository/db";
 
 const resolvers: Resolvers = {
   Query: {
@@ -14,10 +15,15 @@ const resolvers: Resolvers = {
   },
   Mutation: {
     createUser: async (_parent, args, _context, _info) => {
+      const user = await prisma.user.create({
+        data: {
+          name: args.username,
+        },
+      });
       console.log("GQLリクエスト", args);
       return {
-        id: "success",
-        username: args.username,
+        id: user.id,
+        username: user.name,
       };
     },
   },
