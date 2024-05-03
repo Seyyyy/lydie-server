@@ -20,3 +20,7 @@ export const Button = ({ label, ...props }: ButtonProps) => {
     </button>
   );
 };
+
+export const temp = () => {
+  return "success";
+};

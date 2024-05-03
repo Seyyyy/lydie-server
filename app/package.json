@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "vitest",
     "gqlgen": "graphql-codegen --config codegen.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma db push",
@@ -51,7 +52,8 @@
     "storybook": "^8.0.9",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.5.3"
   },
   "prisma": {
     "seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts"
