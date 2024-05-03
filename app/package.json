@@ -17,7 +17,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.2.0",
     "@prisma/client": "^5.13.0",
+    "@tremor/react": "^3.16.2",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "graphql-tools": "^9.0.1",
@@ -40,6 +42,7 @@
     "@storybook/nextjs": "^8.0.9",
     "@storybook/react": "^8.0.9",
     "@storybook/test": "^8.0.9",
+    "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
