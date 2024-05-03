@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     return new Response(
       JSON.stringify({
-        filePath: `${ENV.BASE_OBJECT_PATH}/${ENV.TEMP_OBJECT_PATH}/${fileName}`,
+        fileName: fileName,
       }),
       {
         status: 200,
