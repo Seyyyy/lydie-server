@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 
 const Template = () => {
-  return <Button label="button" />;
+  return <Button className="h-9">button</Button>;
 };
 
 export default {

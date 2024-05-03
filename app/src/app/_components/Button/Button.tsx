@@ -1,26 +1,17 @@
-interface ButtonProps {
-  /**
-   * Button contents
-   */
-  label: string;
-  onClick?: () => void;
-}
+import { ComponentProps } from "react";
+import clsx from "clsx";
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({ label, ...props }: ButtonProps) => {
+type Props = {} & ComponentProps<"button">;
+
+export const Button = (props: Props) => {
   return (
     <button
-      type="button"
-      className={`bg-blue-500 text-white font-bold py-2 px-4 rounded text-size`}
       {...props}
-    >
-      {label}
-    </button>
+      type="button"
+      className={clsx(
+        "bg-light-main-color text-light-base-color font-bold px-4 rounded-3xl",
+        props.className
+      )}
+    />
   );
-};
-
-export const temp = () => {
-  return "success";
 };
