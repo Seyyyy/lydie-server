@@ -10,6 +10,10 @@ export default defineConfig({
       NEXT_PUBLIC_BASE_OBJECT_PATH: path.resolve(__dirname, "tmp"),
       NEXT_PUBLIC_BASE_URL: "http://localhost:3000",
     },
+    // sharpのテストでエラーが出るため、globalsをtrue、poolをforksに設定
+    // https://github.com/vitest-dev/vitest/discussions/4778
+    globals: true,
+    pool: "forks",
   },
   resolve: {
     alias: {
