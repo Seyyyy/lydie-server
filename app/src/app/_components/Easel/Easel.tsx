@@ -13,14 +13,9 @@ export const Easel = (props: Props) => {
             // https://nextjs.org/docs/pages/api-reference/components/image#responsive-images
             src={props.src}
             alt={props.alt || "empty image"}
-            className="w-full h-full object-contain rounded-lg"
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-            width={500}
-            height={500}
+            className="w-full h-full object-cover rounded-lg"
+            sizes="200px"
+            fill
           />
         ) : (
           <div className="m-4 w-[calc(100%-12px)] flex flex-col items-center justify-center border-2 border-dashed border-slate-400 rounded-lg">
