@@ -3,10 +3,17 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  test: {},
+  test: {
+    include: ["src/**/*.spec.ts", "src/**/*.spec.tsx"],
+    env: {
+      NEXT_PUBLIC_ENV: "local",
+      NEXT_PUBLIC_BASE_OBJECT_PATH: path.resolve(__dirname, "tmp"),
+      NEXT_PUBLIC_BASE_URL: "http://localhost:3000",
+    },
+  },
   resolve: {
     alias: {
-      "@/*": path.resolve(__dirname, "src/*"),
+      "@": path.resolve(__dirname, "src"),
     },
   },
 });

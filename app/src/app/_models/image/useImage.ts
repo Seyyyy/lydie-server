@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ENV } from "@/constants";
 
 // TODO: graphqlで定義した型情報を使用する
 export interface MockImageModel {
@@ -38,6 +39,20 @@ export const useImage = (initialImage?: MockImageModel) => {
   }, []);
 
   const analyzeImage = async (file: File) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    if (
+      ENV.ENV === "container" ||
+      ENV.ENV === "local" ||
+      ENV.ENV === "production"
+    ) {
+      const response = await fetch(`${ENV.BASE_URL}/blob`, {
+        method: "POST",
+        body: formData,
+      });
+    }
+
     return [""];
   };
 

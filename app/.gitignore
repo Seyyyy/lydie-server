@@ -40,3 +40,6 @@ src/gql
 
 .env
 *storybook.log
+
+# 開発用のファイル保存場所
+tmp
