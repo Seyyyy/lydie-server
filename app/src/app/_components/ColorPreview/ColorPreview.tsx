@@ -12,7 +12,7 @@ type ChartData = {
   centralValue: number; // 代表値
 };
 
-type Props = {
+export type Props = {
   chartData: ChartData;
 } & ComponentProps<"div">;
 
