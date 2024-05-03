@@ -17,5 +17,8 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
+  env: {
+    NEXT_PUBLIC_ENV: "mock",
+  },
 };
 export default config;
