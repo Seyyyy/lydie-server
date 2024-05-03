@@ -23,8 +23,8 @@ export const Temp = () => {
   return (
     <div>
       <p>Temp</p>
-      <Button label="Query" onClick={onClick} />
-      <Button label="Mutation" onClick={mutation} />
+      <Button onClick={onClick}>Query</Button>
+      <Button onClick={mutation}>Mutation</Button>
     </div>
   );
 };
