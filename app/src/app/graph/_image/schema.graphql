@@ -1,0 +1,22 @@
+type Image {
+  fileName: String
+}
+
+type Entropy {
+  hue_chromatic: Float
+  hue_gray: Float
+  saturation: Float
+  value: Float
+}
+
+type Parameter {
+  hue_chromatic: [Float]
+  hue_gray: [Float]
+  saturation: [Float]
+  value: [Float]
+  entropy: Entropy
+}
+
+type Query {
+  analyzeImage(fileName: String!): Parameter
+}

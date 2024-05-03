@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { ENV } from "@/constants";
+import { GraphQLClient } from "graphql-request";
+import { getSdk } from "@/gql/client";
 
 // TODO: graphqlで定義した型情報を使用する
 export interface MockImageModel {
@@ -51,6 +53,18 @@ export const useImage = (initialImage?: MockImageModel) => {
         method: "POST",
         body: formData,
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+
+        const graphQLClient = new GraphQLClient(`${ENV.BASE_URL}/graph`);
+        const sampleClient = getSdk(graphQLClient);
+        const res = await sampleClient.AnalyzeImage({
+          fileName: data.fileName,
+        });
+        console.log(res);
+      }
     }
 
     return [""];
