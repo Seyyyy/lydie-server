@@ -1,0 +1,14 @@
+query AnalyzeImage($fileName: String!) {
+  analyzeImage(fileName: $fileName) {
+    hue_chromatic
+    hue_gray
+    saturation
+    value
+    entropy {
+      hue_chromatic
+      hue_gray
+      saturation
+      value
+    }
+  }
+}

@@ -2,9 +2,11 @@ import { graphql } from "graphql";
 import { Resolvers, typeDefs } from "@/gql/server";
 import { makeExecutableSchema } from "graphql-tools";
 import prisma from "@/app/_repository/db";
+import { resolvers as imageResolvers } from "./_image";
 
 const resolvers: Resolvers = {
   Query: {
+    ...imageResolvers.Query,
     getUser: async (_parent, args, _context, _info) => {
       console.log("GQLリクエスト", args);
       return {
@@ -43,17 +45,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  console.log("POSTリクエスト");
   const body = await request.json();
-  console.log(body);
 
   const res = await graphql({
     schema,
     source: body.query,
     variableValues: body.variables,
   });
-
-  console.log("完了", res);
 
   return new Response(JSON.stringify(res), {
     headers: { "content-type": "application/json" },

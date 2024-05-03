@@ -35,11 +35,11 @@ describe("ファイルシステムにファイルが保存されている", () =
     ).toBe(true);
   });
 
-  it("保存先のファイルパスが返却される(将来的にファイルパスはハッシュ化して返却したい)", async () => {
+  it("ファイル名が返却される", async () => {
     const res = await POST(request);
     const json = await res.json();
 
-    expect(json.filePath).toContain(`/tmp/test.png`);
+    expect(json.fileName).toBe(`test.png`);
   });
 });
 
