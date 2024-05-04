@@ -50,7 +50,7 @@ export const ColorPreview = (props: Props) => {
       <Legend
         categories={argments.categories}
         colors={argments.colors}
-        className="w-full"
+        className="w-full overflow-auto"
       />
     </div>
   );
