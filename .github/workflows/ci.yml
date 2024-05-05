@@ -1,0 +1,40 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  unit_tests:
+    name: Unit Tests
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+        #   cache: npm
+        #   cache-dependency-path: |
+        #     app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: app
+
+      - name: Create Schema
+        run: npx prisma generate && npx graphql-codegen --config codegen.ts
+        working-directory: app
+
+      - name: Type Check
+        run: npm run type
+        working-directory: app
+
+      - name: Lint
+        run: npm run lint
+        working-directory: app
+
+      - name: Test
+        run: npm run test
+        working-directory: app
