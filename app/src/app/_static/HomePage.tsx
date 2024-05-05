@@ -263,7 +263,7 @@ export const HomePage = () => {
   };
 
   const analyzeImage = async (file: File) => {
-    if (file === null || image === null || image.loading || image.error) {
+    if (file === null || image === null) {
       setColorPreview(initialColorPreview);
       return;
     }
@@ -294,6 +294,7 @@ export const HomePage = () => {
         className="w-full h-[30%]"
         onChange={handleChangeImage}
         src={file ? URL.createObjectURL(file) : ""}
+        aria-label="Upload image"
       />
       <div className="w-full h-[8%] flex items-center">
         <div className="w-full h-9 flex items-center px-4">
