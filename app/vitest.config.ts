@@ -14,6 +14,7 @@ export default defineConfig({
     // https://github.com/vitest-dev/vitest/discussions/4778
     globals: true,
     pool: "forks",
+    watch: false,
   },
   resolve: {
     alias: {

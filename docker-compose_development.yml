@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  app:
+    image: lydie-server-app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - /app/.next # ローカルの.nextをマウントすると、next startが動作しなくなる
+      - /app/node_modules
+      - ./app:/app
+    ports:
+      - 3000:3000
+    command: npm run dev
+    env_file:
+      - .docker.development.env
+  db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/store:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/PGDATA
+    env_file:
+      - .docker.development.env
+  pgadmin:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+volumes:
+  db:

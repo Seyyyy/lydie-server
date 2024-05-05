@@ -11,7 +11,8 @@ services:
       - ./app:/app
     ports:
       - 3000:3000
-    command: npm run dev
+    env_file:
+      - .docker.production.env
   db:
     image: postgres:16
     ports:
@@ -19,10 +20,9 @@ services:
     volumes:
       - ./db/store:/var/lib/postgresql/data
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_DB: lydie
-      POSTGRES_USER: rootuser
-      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/PGDATA
+    env_file:
+      - .docker.production.env
   pgadmin:
     image: adminer
     ports:
