@@ -56,6 +56,10 @@ prod-seed:
 
 # テストコマンド
 # 1. 単体テストの実行
+# 2. 型チェック
+# 3. Lint
 test:
 	cd app \
-	&& npm run test
+	&& npm run test \
+	&& npm run type \
+	&& npm run lint

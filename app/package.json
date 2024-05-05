@@ -14,7 +14,8 @@
     "db:seed": "prisma db seed",
     "db:data-reset": "prisma db push --force-reset && prisma db seed",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "type": "tsc --noEmit"
   },
   "dependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
