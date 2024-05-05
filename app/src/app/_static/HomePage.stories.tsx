@@ -1,7 +1,11 @@
 import { HomePage } from "./HomePage";
 
 const Template = () => {
-  return <HomePage />;
+  return (
+    <div className="w-full h-[800px]">
+      <HomePage />
+    </div>
+  );
 };
 
 export default {

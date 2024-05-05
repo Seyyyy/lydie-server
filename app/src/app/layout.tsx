@@ -13,8 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <nav>aaaa</nav>
+      <body className="bg-light-base-color h-screen w-screen">
+        <div className="w-full h-[6%] px-3 flex items-center justify-center">
+          <p className="text-light-main-color text-size-paragraph font-bold">
+            Lydie
+          </p>
+        </div>
         {children}
       </body>
     </html>
