@@ -6,6 +6,8 @@ updates:
       interval: "weekly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
     groups:
       storybook:
         applies-to: version-updates
@@ -48,9 +50,13 @@ updates:
       interval: "monthly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
