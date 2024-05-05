@@ -1,7 +1,6 @@
 .PHONY: dev-init dev-build dev-up dev-down
 
 dev-init: dev-build dev-up
-	# スキーマの作成はDockerfile内で行う
 	echo "Init done"
 
 dev-build:
