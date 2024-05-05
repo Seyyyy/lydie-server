@@ -6,15 +6,57 @@ updates:
       interval: "weekly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
+    groups:
+      storybook:
+        applies-to: version-updates
+        patterns:
+          - "@storybook*"
+          - "storybook"
+      graphql:
+        applies-to: version-updates
+        patterns:
+          - "graphql*"
+          - "@graphql*"
+      typescript:
+        applies-to: version-updates
+        patterns:
+          - "typescript"
+          - "ts-node"
+      react:
+        applies-to: version-updates
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      eslint:
+        applies-to: version-updates
+        patterns:
+          - "eslint"
+          - "eslint-plugin-jsx-a11y"
+          - "eslint-plugin-next"
+          - "eslint-plugin-storybook"
+      tailwind:
+        applies-to: version-updates
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss*"
+          - "@headlessui/tailwindcss"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "monthly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     assignees:
       - "Seyyyy"
+    labels:
+      - "maintenance"
