@@ -43,3 +43,7 @@ src/gql
 
 # 開発用のファイル保存場所
 tmp
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
