@@ -2,7 +2,8 @@ FROM node:20-bookworm
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
+# 本来は`npm install --productionでdependenciesのみをインストールしたいが、`npx graphql-codegen`が依存関係不足で失敗するため、devDependenciesもインストールする
+RUN npm install
 COPY . .
 
 RUN npx prisma generate
