@@ -19,3 +19,22 @@ dev-destroy:
 dev-seed:
 	docker compose -f docker-compose_development.yml run --rm app npm run db:migrate &&
 	docker compose -f docker-compose_development.yml run --rm app npm run db:seed
+
+prod-init: prod-build prod-up
+	echo "Init done"
+
+prod-build:
+	docker compose -f docker-compose_production.yml build
+
+prod-up:
+	docker compose -f docker-compose_production.yml up -d
+
+prod-down:
+	docker compose -f docker-compose_production.yml down
+
+prod-destroy:
+	docker compose -f docker-compose_production.yml down --rmi all --volumes --remove-orphans
+
+prod-seed:
+	docker compose -f docker-compose_production.yml run --rm app npm run db:migrate &&
+	docker compose -f docker-compose_production.yml run --rm app npm run db:seed
