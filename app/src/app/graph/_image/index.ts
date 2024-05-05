@@ -17,14 +17,14 @@ export const resolvers: Resolvers = {
           hue_chromatic: result.entropy.hue_chromatic,
           hue_gray: result.entropy.hue_gray,
           saturation: result.entropy.saturation,
-          value: result.entropy.brightness,
+          value: result.entropy.value,
         },
       };
     },
   },
 };
 
-const analyzeImage = async (fileName: string) => {
+export const analyzeImage = async (fileName: string) => {
   const filePath = `${ENV.BASE_OBJECT_PATH}/${ENV.TEMP_OBJECT_PATH}/${fileName}`;
   const file = fs.readFileSync(`${filePath}`);
 
@@ -49,7 +49,12 @@ const analyzeImage = async (fileName: string) => {
       hue_gray: hsbRate.hue_gray,
       saturation: hsbRate.saturation,
       value: hsbRate.brightness,
-      entropy: entropy,
+      entropy: {
+        hue_chromatic: entropy.hue_chromatic,
+        hue_gray: entropy.hue_gray,
+        saturation: entropy.saturation,
+        value: entropy.brightness,
+      },
     };
   } else {
     throw new Error("Invalid file type");

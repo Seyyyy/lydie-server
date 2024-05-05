@@ -1,37 +1,26 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import { analyzeImage } from "./index";
 import { ENV } from "@/constants";
-import { GraphQLClient } from "graphql-request";
-import { getSdk } from "@/gql/client";
 import fs from "fs";
 
 describe("保存されているファイルを解析できる", () => {
-  let fileName: string;
+  const fileName: string = "image_spec.png";
 
   beforeEach(async () => {
     // サンプル画像の読み込み（/tmpに一時保存）
     const mockFile = await fs.readFileSync("testdata/mock.png");
-    const BufferToFile = new File([mockFile], "mock.png", {
-      type: "image/png",
-    });
-    const mockFormData = new FormData();
-    mockFormData.append("image", BufferToFile);
-    const response = await fetch(`${ENV.BASE_URL}/blob`, {
-      method: "POST",
-      body: mockFormData,
-    });
-    const data = await response.json();
-    fileName = data.fileName;
+
+    await fs.writeFileSync(
+      `${ENV.BASE_OBJECT_PATH}/${ENV.TEMP_OBJECT_PATH}/${fileName}`,
+      mockFile
+    );
   });
 
   it("解析結果を受け取ることができる", async () => {
     // 画像解析実行
-    const graphQLClient = new GraphQLClient(`${ENV.BASE_URL}/graph`);
-    const sampleClient = getSdk(graphQLClient);
-    const res = await sampleClient.AnalyzeImage({
-      fileName: fileName,
-    });
+    const res = await analyzeImage(fileName);
 
-    expect(res.data.analyzeImage).toEqual({
+    expect(res).toEqual({
       hue_chromatic: [0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.25],
       hue_gray: [0, 0, 0],
       saturation: [0, 0.25, 0, 0, 0.75, 0, 0, 0, 0, 0, 0, 0],
@@ -47,11 +36,7 @@ describe("保存されているファイルを解析できる", () => {
 
   it("一時保存されたファイルが削除されている", async () => {
     // 画像解析実行
-    const graphQLClient = new GraphQLClient(`${ENV.BASE_URL}/graph`);
-    const sampleClient = getSdk(graphQLClient);
-    await sampleClient.AnalyzeImage({
-      fileName: fileName,
-    });
+    await analyzeImage(fileName);
 
     // ファイルが削除されているか確認
     expect(
