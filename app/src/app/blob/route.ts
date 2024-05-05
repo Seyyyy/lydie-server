@@ -2,12 +2,6 @@ import fs from "fs";
 import crypto from "crypto";
 import { ENV } from "@/constants";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(request: Request) {
   const image = (await request.formData()).get("image") as Blob;
 
