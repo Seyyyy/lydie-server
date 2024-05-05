@@ -56,18 +56,16 @@ export const useImage = (initialImage?: MockImageModel) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-
         const graphQLClient = new GraphQLClient(`${ENV.BASE_URL}/graph`);
         const sampleClient = getSdk(graphQLClient);
         const res = await sampleClient.AnalyzeImage({
           fileName: data.fileName,
         });
-        console.log(res);
+        return res.data.analyzeImage;
       }
     }
 
-    return [""];
+    return null;
   };
 
   return {

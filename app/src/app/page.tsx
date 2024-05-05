@@ -1,11 +1,5 @@
-import { Temp } from "./temp";
+import { HomePage } from "./_static/HomePage";
 
 export default function Home() {
-  console.log("Home");
-  return (
-    <div>
-      <p>Home</p>
-      <Temp />
-    </div>
-  );
+  return <HomePage />;
 }
