@@ -2,7 +2,7 @@ FROM node:20-bookworm
 
 WORKDIR /app
 COPY package*.json ./
-# 本来は`npm install --productionでdependenciesのみをインストールしたいが、`npx graphql-codegen`が依存関係不足で失敗するため、devDependenciesもインストールする
+# 本来は`npm install --productionでdependenciesのみをインストールしたい
 RUN npm i
 COPY . .
 
