@@ -6,6 +6,7 @@ test.describe("画像分析機能の検証", () => {
     await page.goto("http://localhost:3000/");
 
     // 上から1番目のinput要素を取得
+    // https://playwright.dev/docs/input#upload-files
     const inputElement = await page.getByLabel("Upload image");
     inputElement.setInputFiles(path.join(__dirname, "../../testdata/mock.png"));
 
