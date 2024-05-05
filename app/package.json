@@ -15,7 +15,8 @@
     "db:data-reset": "prisma db push --force-reset && prisma db seed",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "type": "tsc --noEmit"
+    "type": "tsc --noEmit",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
@@ -38,6 +39,7 @@
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.2.0",
     "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@playwright/test": "^1.43.1",
     "@storybook/addon-essentials": "^8.0.9",
     "@storybook/addon-interactions": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",
