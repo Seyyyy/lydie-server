@@ -15,9 +15,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-        #   cache: npm
-        #   cache-dependency-path: |
-        #     app/package-lock.json
+          cache: npm
+          cache-dependency-path: |
+            app/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -47,9 +47,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-        #   cache: npm
-        #   cache-dependency-path: |
-        #     app/package-lock.json
+          cache: npm
+          cache-dependency-path: |
+            app/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -59,7 +59,7 @@ jobs:
         run: make dev-init
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
       - name: E2E Tests
         run: npm run test:e2e
