@@ -3,6 +3,7 @@ import { Resolvers, typeDefs } from "@/gql/server";
 import { makeExecutableSchema } from "graphql-tools";
 import prisma from "@/app/_repository/db";
 import { resolvers as imageResolvers } from "./_image";
+import pino from "pino";
 
 const resolvers: Resolvers = {
   Query: {
@@ -47,11 +48,29 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const body = await request.json();
 
+  const logger = pino();
+  const child = logger.child({
+    sessionId: "",
+    query: body.query,
+  });
+
   const res = await graphql({
     schema,
     source: body.query,
     variableValues: body.variables,
+    contextValue: { sessionId: "", logger: child },
   });
+
+  if (res.errors) {
+    for (const error of res.errors) {
+      child.error(error);
+    }
+
+    return new Response(JSON.stringify(res.errors[0]), {
+      headers: { "content-type": "application/json" },
+      status: 400,
+    });
+  }
 
   return new Response(JSON.stringify(res), {
     headers: { "content-type": "application/json" },

@@ -21,6 +21,9 @@ const config: CodegenConfig = {
         "typescript-resolvers",
         "scripts/codegen-typedefs.js",
       ],
+      config: {
+        contextType: "@/app/graph/graphql.context#Context",
+      },
     },
   },
 };

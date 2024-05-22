@@ -3,11 +3,13 @@ import fs from "fs";
 import { Resolvers } from "@/gql/server";
 import { Image } from "lydie";
 import { ENV } from "@/constants";
+import { Context } from "@/app/graph/graphql.context";
+// import { GraphQLError } from "graphql";
 
 export const resolvers: Resolvers = {
   Query: {
     analyzeImage: async (_parent, args, _context, _info) => {
-      const result = await analyzeImage(args.fileName);
+      const result = await analyzeImage(args.fileName, _context);
       return {
         hue_chromatic: result.hue_chromatic,
         hue_gray: result.hue_gray,
@@ -24,8 +26,12 @@ export const resolvers: Resolvers = {
   },
 };
 
-export const analyzeImage = async (fileName: string) => {
+export const analyzeImage = async (
+  fileName: string,
+  logger?: Pick<Context, "logger">
+) => {
   const filePath = `${ENV.BASE_OBJECT_PATH}/${ENV.TEMP_OBJECT_PATH}/${fileName}`;
+  logger && logger.logger.info({ filePath: filePath });
   const file = fs.readFileSync(`${filePath}`);
 
   if (file) {
@@ -43,6 +49,13 @@ export const analyzeImage = async (fileName: string) => {
 
     // ファイル削除
     fs.unlinkSync(filePath);
+
+    // throw new GraphQLError("Invalid file type", {
+    //   positions: [1],
+    //   extensions: {
+    //     code: "INVALID_FILE_TYPE",
+    //   },
+    // });
 
     return {
       hue_chromatic: hsbRate.hue_chromatic,
