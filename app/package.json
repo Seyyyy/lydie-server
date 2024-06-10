@@ -21,7 +21,7 @@
   "dependencies": {
     "@headlessui/tailwindcss": "^0.2.1",
     "@prisma/client": "^5.13.0",
-    "@tremor/react": "^3.16.2",
+    "@tremor/react": "^3.17.2",
     "clsx": "^2.1.1",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
