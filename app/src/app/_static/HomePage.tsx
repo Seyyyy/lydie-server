@@ -7,7 +7,6 @@ import {
   Props as ColorPreviewProps,
 } from "@/app/_components/ColorPreview/ColorPreview";
 import { Select } from "@/app/_components/Select/Select";
-// import { Button } from "@/app/_components/Button/Button";
 import { useImage } from "@/app/_models/image/useImage";
 import { Parameter } from "@/gql/client";
 
