@@ -52,6 +52,11 @@ prod-seed:
 	docker compose -f docker-compose_production.yml run --rm app npm run db:migrate \
 	&& docker compose -f docker-compose_production.yml run --rm app npm run db:seed
 
+# 本番環境用コマンド
+static-build:
+	docker compose -f docker-compose_static.yml build \
+	&& docker compose -f docker-compose_static.yml up
+
 # テストコマンド
 # 1. 単体テストの実行
 # 2. 型チェック

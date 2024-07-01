@@ -1,0 +1,36 @@
+FROM node:20-bookworm
+
+WORKDIR /app
+COPY package*.json ./
+COPY tailwind.config.ts ./
+COPY tsconfig.json ./
+COPY postcss.config.js ./
+COPY next.config.mjs ./
+COPY public public
+COPY src/constants.ts src/constants.ts
+COPY src/app/page.tsx src/app/page.tsx
+COPY src/app/layout.tsx src/app/layout.tsx
+COPY src/app/globals.css src/app/globals.css
+COPY src/app/_components src/app/_components
+COPY src/app/_models src/app/_models
+COPY src/app/_static src/app/_static
+COPY src/app/_tokens src/app/_tokens
+
+COPY codegen.ts ./
+COPY prisma prisma
+COPY src/app/_models src/app/_models
+COPY src/app/_repository src/app/_repository
+COPY src/app/graph src/app/graph
+COPY scripts scripts
+
+# 本来は`npm install --productionでdependenciesのみをインストールしたい
+RUN npm i
+
+RUN npm run db:generate
+RUN npm run gqlgen
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "run", "build"]
