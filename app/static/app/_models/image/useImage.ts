@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Image as LImage } from "lydie";
 
 // TODO: graphqlで定義した型情報を使用する
@@ -13,21 +13,10 @@ export interface MockImageModel {
  * @description Imageモデルの操作を行うカスタムフック
  */
 export const useImage = (initialImage?: MockImageModel) => {
-  const [image, setImage] = React.useState<MockImageModel | null>(
+  const [image, _] = React.useState<MockImageModel | null>(
     initialImage || null
   );
   const [error, setError] = React.useState<boolean>(false);
-
-  useEffect(() => {
-    // (async () => {
-    //   try {
-    //     const image = await fetcher();
-    //     setImage(image);
-    //   } catch (e) {
-    //     setError(true);
-    //   }
-    // })();
-  }, []);
 
   const analyzeImage = async (file: File) => {
     try {
@@ -39,6 +28,7 @@ export const useImage = (initialImage?: MockImageModel) => {
       );
       return result;
     } catch (e) {
+      setError(true);
       return null;
     }
   };
