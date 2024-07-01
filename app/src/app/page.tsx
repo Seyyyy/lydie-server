@@ -1,5 +1,6 @@
 import { HomePage } from "./_static/HomePage";
+import { useImage } from "@/app/_models/image/useImage";
 
 export default function Home() {
-  return <HomePage />;
+  return <HomePage useImage={useImage} />;
 }

@@ -53,7 +53,7 @@ prod-seed:
 	&& docker compose -f docker-compose_production.yml run --rm app npm run db:seed
 
 # 本番環境用コマンド
-static-build:
+static-build: generate-schema
 	docker compose -f docker-compose_static.yml build \
 	&& docker compose -f docker-compose_static.yml up
 

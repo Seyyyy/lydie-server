@@ -1,9 +1,10 @@
 import { HomePage } from "./HomePage";
+import { useImage } from "@/app/_models/image/useImage";
 
 const Template = () => {
   return (
     <div className="w-full h-[800px]">
-      <HomePage />
+      <HomePage useImage={useImage} />
     </div>
   );
 };

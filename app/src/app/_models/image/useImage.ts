@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { ENV } from "@/constants";
 import { GraphQLClient } from "graphql-request";
@@ -77,3 +79,7 @@ export const useImage = (initialImage?: MockImageModel) => {
     loading: image === null,
   };
 };
+
+export type UseImage = (
+  initialImage?: MockImageModel
+) => ReturnType<typeof useImage>;
