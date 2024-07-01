@@ -44,6 +44,10 @@ updates:
           - "tailwindcss"
           - "@tailwindcss*"
           - "@headlessui/tailwindcss"
+    ignore:
+      - dependency-name: "sharp"
+      - dependency-name: "graphql-request"
+      - dependency-name: "eslint"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
