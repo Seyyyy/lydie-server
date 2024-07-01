@@ -7,7 +7,8 @@ import {
   Props as ColorPreviewProps,
 } from "@/app/_components/ColorPreview/ColorPreview";
 import { Select } from "@/app/_components/Select/Select";
-import { useImage } from "@/app/_models/image/useImage";
+// import { Button } from "@/app/_components/Button/Button";
+import { UseImage } from "@/app/_models/image/useImage";
 import { Parameter } from "@/gql/client";
 
 const initialColorPreview = {
@@ -243,7 +244,10 @@ export const formatAnalyzeImage = (
   };
 };
 
-export const HomePage = () => {
+/**
+ * @param useImage カスタムフック
+ */
+export const HomePage = (props: { useImage: UseImage }) => {
   const [selected, setSelected] = useState<"Hue" | "Saturation" | "Value">(
     "Hue"
   );
@@ -251,7 +255,7 @@ export const HomePage = () => {
   const [colorPreview, setColorPreview] = useState<{
     [key: string]: Pick<ColorPreviewProps, "chartData">;
   }>(initialColorPreview);
-  const image = useImage();
+  const image = props.useImage();
 
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

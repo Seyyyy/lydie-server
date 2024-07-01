@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  app:
+    image: lydie-server-static
+    build:
+      context: ./app
+      dockerfile: Dockerfile.static
+    ports:
+      - 3000:3000
+    command: npm run build
+    env_file:
+      - .docker.static.env
+    volumes:
+      - ./dist:/app/dist
