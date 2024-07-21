@@ -153,7 +153,7 @@ export const formatAnalyzeImage = (
           {
             name: "s0",
             value: analyzeResult.saturation[0] || 0,
-            color: "white",
+            color: "slate-50",
           },
           {
             name: "s1",
@@ -217,7 +217,7 @@ export const formatAnalyzeImage = (
     value: {
       chartData: {
         data: [
-          { name: "v0", value: analyzeResult.value[0] || 0, color: "white" },
+          { name: "v0", value: analyzeResult.value[0] || 0, color: "slate-50" },
           { name: "v1", value: analyzeResult.value[1] || 0, color: "red-50" },
           { name: "v2", value: analyzeResult.value[2] || 0, color: "red-100" },
           { name: "v3", value: analyzeResult.value[3] || 0, color: "red-200" },
@@ -244,13 +244,52 @@ export const formatAnalyzeImage = (
   };
 };
 
+const Viewer = (props: {
+  colorPreview: { [key: string]: Pick<ColorPreviewProps, "chartData"> };
+}) => {
+  const [selected, setSelected] = useState<"Hue" | "Saturation" | "Value">(
+    "Hue"
+  );
+
+  return (
+    <>
+      <div className="w-full h-[8%] flex items-center">
+        <div className="w-full h-9 flex items-center px-4">
+          <div className="w-[50%] h-9 flex justify-start items-center">
+            {/* <Button className="h-9">Save</Button> */}
+          </div>
+          <div className="w-[50%] h-9 flex justify-end items-center">
+            <Select
+              options={["Hue", "Saturation", "Value"]}
+              value={selected}
+              className="w-full h-full"
+              onChange={(e) => {
+                setSelected(e.target.value as "Hue" | "Saturation" | "Value");
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="w-full py-4 px-10 flex justify-start flex-col">
+        <ColorPreview
+          className="w-full h-full"
+          chartData={
+            selected === "Hue"
+              ? props.colorPreview.hue.chartData
+              : selected === "Saturation"
+                ? props.colorPreview.saturation.chartData
+                : props.colorPreview.value.chartData
+          }
+        />
+      </div>
+    </>
+  );
+};
+
 /**
  * @param useImage カスタムフック
  */
 export const HomePage = (props: { useImage: UseImage }) => {
-  const [selected, setSelected] = useState<"Hue" | "Saturation" | "Value">(
-    "Hue"
-  );
   const [file, setFile] = useState<File | null>(null);
   const [colorPreview, setColorPreview] = useState<{
     [key: string]: Pick<ColorPreviewProps, "chartData">;
@@ -299,35 +338,7 @@ export const HomePage = (props: { useImage: UseImage }) => {
         src={file ? URL.createObjectURL(file) : ""}
         aria-label="Upload image"
       />
-      <div className="w-full h-[8%] flex items-center">
-        <div className="w-full h-9 flex items-center px-4">
-          <div className="w-[50%] h-9 flex justify-start items-center">
-            {/* <Button className="h-9">Save</Button> */}
-          </div>
-          <div className="w-[50%] h-9 flex justify-end items-center">
-            <Select
-              options={["Hue", "Saturation", "Value"]}
-              value={selected}
-              className="w-full h-full"
-              onChange={(e) => {
-                setSelected(e.target.value as "Hue" | "Saturation" | "Value");
-              }}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-[56%] py-4 px-10 flex justify-start flex-col">
-        <ColorPreview
-          className="w-full h-full"
-          chartData={
-            selected === "Hue"
-              ? colorPreview.hue.chartData
-              : selected === "Saturation"
-                ? colorPreview.saturation.chartData
-                : colorPreview.value.chartData
-          }
-        />
-      </div>
+      <Viewer colorPreview={colorPreview} />
     </div>
   );
 };

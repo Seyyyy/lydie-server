@@ -39,7 +39,7 @@ describe("画像解析結果のUI", () => {
       saturation: {
         chartData: {
           data: [
-            { name: "s0", value: 0, color: "white" },
+            { name: "s0", value: 0, color: "slate-50" },
             { name: "s1", value: 0.25, color: "red-50" },
             { name: "s2", value: 0, color: "red-100" },
             { name: "s3", value: 0, color: "red-200" },
@@ -58,7 +58,7 @@ describe("画像解析結果のUI", () => {
       value: {
         chartData: {
           data: [
-            { name: "v0", value: 0, color: "white" },
+            { name: "v0", value: 0, color: "slate-50" },
             { name: "v1", value: 0, color: "red-50" },
             { name: "v2", value: 0, color: "red-100" },
             { name: "v3", value: 0, color: "red-200" },
