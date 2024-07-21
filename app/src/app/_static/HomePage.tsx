@@ -153,7 +153,7 @@ export const formatAnalyzeImage = (
           {
             name: "s0",
             value: analyzeResult.saturation[0] || 0,
-            color: "white",
+            color: "slate-50",
           },
           {
             name: "s1",
@@ -217,7 +217,7 @@ export const formatAnalyzeImage = (
     value: {
       chartData: {
         data: [
-          { name: "v0", value: analyzeResult.value[0] || 0, color: "white" },
+          { name: "v0", value: analyzeResult.value[0] || 0, color: "slate-50" },
           { name: "v1", value: analyzeResult.value[1] || 0, color: "red-50" },
           { name: "v2", value: analyzeResult.value[2] || 0, color: "red-100" },
           { name: "v3", value: analyzeResult.value[3] || 0, color: "red-200" },
