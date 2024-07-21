@@ -46,6 +46,7 @@ export const ColorPreview = (props: Props) => {
         }}
         onValueChange={(v) => console.log(v)}
         colors={argments.colors}
+        showAnimation
       />
       <Legend
         categories={argments.categories}
