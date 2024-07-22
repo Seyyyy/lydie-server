@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@headlessui/tailwindcss": "^0.2.1",
-    "@prisma/client": "^5.16.1",
+    "@prisma/client": "^5.17.0",
     "@tremor/react": "^3.17.4",
     "clsx": "^2.1.1",
     "graphql": "^16.9.0",
