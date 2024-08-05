@@ -40,7 +40,7 @@
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.2.3",
     "@graphql-codegen/typescript-resolvers": "^4.2.1",
-    "@playwright/test": "^1.45.1",
+    "@playwright/test": "^1.45.3",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
