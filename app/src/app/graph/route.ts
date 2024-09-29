@@ -1,6 +1,6 @@
 import { graphql } from "graphql";
 import { Resolvers, typeDefs } from "@/gql/server";
-import { makeExecutableSchema } from "graphql-tools";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import prisma from "@/app/_repository/db";
 import { resolvers as imageResolvers } from "./_image";
 import pino from "pino";
