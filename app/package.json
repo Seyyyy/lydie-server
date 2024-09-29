@@ -19,13 +19,13 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@graphql-tools/schema": "^10.0.6",
     "@headlessui/tailwindcss": "^0.2.1",
     "@prisma/client": "^5.18.0",
     "@tremor/react": "^3.18.2",
     "clsx": "^2.1.1",
     "graphql": "^16.9.0",
     "graphql-request": "^6.1.0",
-    "graphql-tools": "^9.0.1",
     "lydie": "^0.3.0",
     "next": "14.2.12",
     "pino": "^9.4.0",
