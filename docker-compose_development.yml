@@ -1,5 +1,11 @@
 version: "3.9"
 services:
+  workspace:
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    tty: true
   app:
     image: lydie-server-app
     build:
