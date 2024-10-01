@@ -1,5 +1,5 @@
-.PHONY: dev-init dev-build dev-up dev-down dev-seed dev-destroy \
-	prod-init prod-build prod-up prod-down prod-seed prod-destroy \
+.PHONY: dev-init dev-build dev-up dev-down dev-seed dev-destroy dev-generate-schema \
+	prod-init prod-build prod-up prod-down prod-seed prod-destroy prod-generate-schema \
 	test e2e-test clean-project generate-schema
 
 # 開発環境用コマンド
@@ -8,7 +8,7 @@
 # 3. DBのマイグレーション
 # 4. DBのシードデータを投入
 # 5. スキーマ生成
-dev-init: dev-build dev-up dev-seed generate-schema
+dev-init: dev-build dev-up dev-seed dev-generate-schema
 	echo "Init done"
 
 dev-build:
@@ -27,13 +27,16 @@ dev-seed:
 	docker compose -f docker-compose_development.yml run --rm app npm run db:migrate \
 	&& docker compose -f docker-compose_development.yml run --rm app npm run db:seed
 
+dev-generate-schema:
+	docker compose -f docker-compose_development.yml run --rm app sh -c "npm run db:generate && npm run gqlgen"
+
 # 本番環境用コマンド
 # 1. prod-build: 本番環境用のDockerイメージをビルド
 # 2. prod-up: 本番環境用のDockerコンテナを起動
 # 3. DBのマイグレーション
 # 4. DBのシードデータを投入
 # 5. スキーマ生成
-prod-init: prod-build prod-up prod-seed generate-schema
+prod-init: prod-build prod-up prod-seed prod-generate-schema
 	echo "Init done"
 
 prod-build:
@@ -51,6 +54,9 @@ prod-destroy:
 prod-seed:
 	docker compose -f docker-compose_production.yml run --rm app npm run db:migrate \
 	&& docker compose -f docker-compose_production.yml run --rm app npm run db:seed
+
+prod-generate-schema:
+	docker compose -f docker-compose_production.yml run --rm app sh -c "npm run db:generate && npm run gqlgen"
 
 # 静的ビルド用コマンド
 static-build: generate-schema
