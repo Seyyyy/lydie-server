@@ -22,7 +22,7 @@
     "@graphql-tools/schema": "^10.0.6",
     "@headlessui/tailwindcss": "^0.2.1",
     "@prisma/client": "^5.20.0",
-    "@tremor/react": "^3.18.2",
+    "@tremor/react": "^3.18.3",
     "clsx": "^2.1.1",
     "graphql": "^16.9.0",
     "graphql-request": "^6.1.0",
