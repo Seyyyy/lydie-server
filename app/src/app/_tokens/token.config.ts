@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export const darkColors = {
   // ダークテーマ
   "dark-main-color": "#eceff1",

@@ -1,7 +1,9 @@
 import { Button } from "./Button";
+import { useTranslation } from "react-i18next";
 
 const Template = () => {
-  return <Button className="h-9">button</Button>;
+  const { t } = useTranslation();
+  return <Button className="h-9">{t('button')}</Button>;
 };
 
 export default {

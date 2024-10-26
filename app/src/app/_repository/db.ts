@@ -1,8 +1,6 @@
-// 開発インスタンスのホットリロードでprismaインスタンスが複数作成されてエラーになるのを防ぐ。
-// 本番環境はリクエストごとに独立したプロセスであるため、プロセスごとにprismaインスタンスを使い回す。
-// https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
 import { PrismaClient } from "@prisma/client";
-// import { isDevelopment } from '@utils/environment'
+import { useTranslation } from "react-i18next";
+
 const isDevelopment = true;
 
 const prismaClientSingleton = () => {

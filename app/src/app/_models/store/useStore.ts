@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 // TODO: graphqlで定義した型情報を使用する
 export interface MockStoreModel {
@@ -21,6 +22,7 @@ const fetcher = () => {
  * @description Storeモデルの操作を行うカスタムフック
  */
 export const useStore = (initialStore?: MockStoreModel) => {
+  const { t } = useTranslation();
   const [store, setStore] = React.useState<MockStoreModel | null>(
     initialStore || null
   );

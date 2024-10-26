@@ -1,11 +1,13 @@
 import { Select } from "./Select";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Template = () => {
-  const [value, setValue] = useState("red");
+  const { t } = useTranslation();
+  const [value, setValue] = useState(t("red"));
   return (
     <Select
-      options={["red", "blue", "green"]}
+      options={[t("red"), t("blue"), t("green")]}
       value={value}
       onChange={(e) => {
         setValue(e.target.value);

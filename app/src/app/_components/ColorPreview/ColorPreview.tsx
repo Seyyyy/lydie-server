@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import { DonutChart, Legend } from "@tremor/react";
+import { useTranslation } from "react-i18next";
 
 type Data = {
   name: string;
@@ -33,6 +34,7 @@ export const formatArgments = (
 };
 
 export const ColorPreview = (props: Props) => {
+  const { t } = useTranslation();
   const argments = formatArgments(props.chartData.data);
   return (
     <div className={`gap-4 flex flex-col ${props.className}`}>

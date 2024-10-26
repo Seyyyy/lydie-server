@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   options: string[];
@@ -7,6 +8,7 @@ type Props = {
 } & ComponentProps<"select">;
 
 export const Select = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <form className="w-full h-full">
       <select
@@ -21,7 +23,7 @@ export const Select = (props: Props) => {
         {props.options.map((option) => {
           return (
             <option key={option} value={option}>
-              {option}
+              {t(option)}
             </option>
           );
         })}

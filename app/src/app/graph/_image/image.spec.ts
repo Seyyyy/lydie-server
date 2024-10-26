@@ -2,8 +2,10 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { analyzeImage } from "./index";
 import { ENV } from "@/constants";
 import fs from "fs";
+import { useTranslation } from "react-i18next";
 
 describe("保存されているファイルを解析できる", () => {
+  const { t } = useTranslation();
   const fileName: string = "image_spec.png";
 
   beforeEach(async () => {

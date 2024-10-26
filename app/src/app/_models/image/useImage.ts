@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { ENV } from "@/constants";
 import { GraphQLClient } from "graphql-request";
 import { getSdk } from "@/gql/client";
+import { useTranslation } from "react-i18next";
 
 // TODO: graphqlで定義した型情報を使用する
 export interface MockImageModel {
@@ -26,6 +27,7 @@ const fetcher = () => {
  * @description Imageモデルの操作を行うカスタムフック
  */
 export const useImage = (initialImage?: MockImageModel) => {
+  const { t } = useTranslation();
   const [image, setImage] = React.useState<MockImageModel | null>(
     initialImage || null
   );

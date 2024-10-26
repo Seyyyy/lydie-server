@@ -4,26 +4,29 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import prisma from "@/app/_repository/db";
 import { resolvers as imageResolvers } from "./_image";
 import pino from "pino";
+import { useTranslation } from "react-i18next";
 
 const resolvers: Resolvers = {
   Query: {
     ...imageResolvers.Query,
     getUser: async (_parent, args, _context, _info) => {
-      console.log("GQLリクエスト", args);
+      const { t } = useTranslation();
+      console.log(t("GQL request"), args);
       return {
         id: args.id + "success",
-        username: "成功",
+        username: t("Success"),
       };
     },
   },
   Mutation: {
     createUser: async (_parent, args, _context, _info) => {
+      const { t } = useTranslation();
       const user = await prisma.user.create({
         data: {
           name: args.username,
         },
       });
-      console.log("GQLリクエスト", args);
+      console.log(t("GQL request"), args);
       return {
         id: user.id,
         username: user.name,
@@ -38,7 +41,8 @@ const schema = makeExecutableSchema({
 });
 
 export async function GET(request: Request) {
-  console.log("GETリクエスト");
+  const { t } = useTranslation();
+  console.log(t("GET request"));
 
   return new Response("Hello world!", {
     headers: { "content-type": "text/plain" },

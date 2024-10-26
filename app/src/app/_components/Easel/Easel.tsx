@@ -1,10 +1,13 @@
 import { ComponentProps } from "react";
 import Image from "next/image";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 type Props = {} & ComponentProps<"input">;
 
 export const Easel = (props: Props) => {
+  const { t } = useTranslation();
+
   return (
     <div className={clsx(`bg-bgBack rounded-lg relative`, props.className)}>
       <div className="absolute w-full h-full flex justify-center">
@@ -19,7 +22,7 @@ export const Easel = (props: Props) => {
           />
         ) : (
           <div className="m-4 w-[calc(100%-12px)] flex flex-col items-center justify-center border-2 border-dashed border-slate-400 rounded-lg">
-            <p className={`textButton text-gray-500`}>{`Please input file`}</p>
+            <p className={`textButton text-gray-500`}>{t('Please input file')}</p>
           </div>
         )}
       </div>

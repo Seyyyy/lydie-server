@@ -10,6 +10,7 @@ import { Select } from "@/app/_components/Select/Select";
 // import { Button } from "@/app/_components/Button/Button";
 import { UseImage } from "@/app/_models/image/useImage";
 import { Parameter } from "@/gql/client";
+import { useTranslation } from "react-i18next";
 
 const initialColorPreview = {
   hue: {
@@ -247,6 +248,7 @@ export const formatAnalyzeImage = (
 const Viewer = (props: {
   colorPreview: { [key: string]: Pick<ColorPreviewProps, "chartData"> };
 }) => {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<"Hue" | "Saturation" | "Value">(
     "Hue"
   );
@@ -260,7 +262,7 @@ const Viewer = (props: {
           </div>
           <div className="w-[50%] h-9 flex justify-end items-center">
             <Select
-              options={["Hue", "Saturation", "Value"]}
+              options={[t("Hue"), t("Saturation"), t("Value")]}
               value={selected}
               className="w-full h-full"
               onChange={(e) => {
@@ -290,6 +292,7 @@ const Viewer = (props: {
  * @param useImage カスタムフック
  */
 export const HomePage = (props: { useImage: UseImage }) => {
+  const { t } = useTranslation();
   const [file, setFile] = useState<File | null>(null);
   const [colorPreview, setColorPreview] = useState<{
     [key: string]: Pick<ColorPreviewProps, "chartData">;
@@ -336,7 +339,7 @@ export const HomePage = (props: { useImage: UseImage }) => {
         className="w-full h-[30%]"
         onChange={handleChangeImage}
         src={file ? URL.createObjectURL(file) : ""}
-        aria-label="Upload image"
+        aria-label={t('Upload image')}
       />
       <Viewer colorPreview={colorPreview} />
     </div>

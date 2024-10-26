@@ -1,11 +1,13 @@
 import { StorePage } from "./StorePage";
+import { useTranslation } from "react-i18next";
 
 const Template = () => {
+  const { t } = useTranslation();
   return (
     <StorePage
       store={{
         id: 1,
-        name: "initial store",
+        name: t("initial store"),
       }}
     />
   );

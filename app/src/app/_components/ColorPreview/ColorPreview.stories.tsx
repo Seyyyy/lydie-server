@@ -1,4 +1,5 @@
 import { ColorPreview } from "./ColorPreview";
+import { useTranslation } from "react-i18next";
 
 const mockProps = [
   { name: "red", value: 0.076, color: "red" },
@@ -16,6 +17,7 @@ const mockProps = [
 ];
 
 const Template = () => {
+  const { t } = useTranslation();
   return (
     <ColorPreview
       className="w-96 h-96"

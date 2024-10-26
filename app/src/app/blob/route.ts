@@ -1,8 +1,10 @@
 import fs from "fs";
 import crypto from "crypto";
 import { ENV } from "@/constants";
+import { useTranslation } from "react-i18next";
 
 export async function POST(request: Request) {
+  const { t } = useTranslation();
   const image = (await request.formData()).get("image") as Blob;
 
   if (image) {
@@ -15,7 +17,7 @@ export async function POST(request: Request) {
     if (type !== "png" && type !== "jpeg" && type !== "jpg") {
       return new Response(
         JSON.stringify({
-          message: "Invalid file type",
+          message: t("Invalid file type"),
         }),
         {
           status: 400,
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
   } else {
     return new Response(
       JSON.stringify({
-        message: "Invalid file type",
+        message: t("Invalid file type"),
       }),
       {
         status: 400,

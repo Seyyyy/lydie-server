@@ -4,11 +4,13 @@ import { Resolvers } from "@/gql/server";
 import { Image } from "lydie";
 import { ENV } from "@/constants";
 import { Context } from "@/app/graph/graphql.context";
+import { useTranslation } from "react-i18next";
 // import { GraphQLError } from "graphql";
 
 export const resolvers: Resolvers = {
   Query: {
     analyzeImage: async (_parent, args, _context, _info) => {
+      const { t } = useTranslation();
       const result = await analyzeImage(args.fileName, _context);
       return {
         hue_chromatic: result.hue_chromatic,
@@ -30,6 +32,7 @@ export const analyzeImage = async (
   fileName: string,
   logger?: Pick<Context, "logger">
 ) => {
+  const { t } = useTranslation();
   const filePath = `${ENV.BASE_OBJECT_PATH}/${ENV.TEMP_OBJECT_PATH}/${fileName}`;
   logger && logger.logger.info({ filePath: filePath });
   const file = fs.readFileSync(`${filePath}`);
@@ -70,7 +73,7 @@ export const analyzeImage = async (
       },
     };
   } else {
-    throw new Error("Invalid file type");
+    throw new Error(t("Invalid file type"));
   }
 };
 

@@ -1,10 +1,12 @@
 import { Meta, Typeset } from "@storybook/blocks";
 import { fontSize } from "./token.config.ts";
+import { useTranslation } from "react-i18next";
 
 <Meta title="Tokens/Typography" />
 
-export const SampleText =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+const { t } = useTranslation();
+
+export const SampleText = t("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
 
 # Paragraph
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MockStoreModel, useStore } from "@/app/_models/store/useStore";
+import { useTranslation } from "react-i18next";
 
 export interface StorePageProps {
   store?: MockStoreModel;
@@ -17,6 +18,7 @@ export const useStorePage = (initialStore?: MockStoreModel) => {
     loading: storeLoading,
   } = useStore(initialStore);
   const [error, setError] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return {
     storePage: {
