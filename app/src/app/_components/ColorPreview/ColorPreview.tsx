@@ -44,7 +44,7 @@ export const ColorPreview = (props: Props) => {
         valueFormatter={(val: number) => {
           return `${(val * 100).toFixed(1)}%`;
         }}
-        onValueChange={(v) => console.log(v)}
+        // onValueChange={(v) => console.log(v)} // このプロパティを有効にすると、outside clickでpopoverが閉じなくなる。
         colors={argments.colors}
         showAnimation
       />
