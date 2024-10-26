@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useState, useEffect, useRef } from "react";
 import { DonutChart, Legend } from "@tremor/react";
 
 type Data = {
@@ -33,9 +33,25 @@ export const formatArgments = (
 };
 
 export const ColorPreview = (props: Props) => {
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (chartRef.current && !chartRef.current.contains(event.target as Node)) {
+      setPopoverVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const argments = formatArgments(props.chartData.data);
   return (
-    <div className={`gap-4 flex flex-col ${props.className}`}>
+    <div className={`gap-4 flex flex-col ${props.className}`} ref={chartRef}>
       <DonutChart
         className="w-full h-64"
         data={argments.data}
@@ -44,7 +60,10 @@ export const ColorPreview = (props: Props) => {
         valueFormatter={(val: number) => {
           return `${(val * 100).toFixed(1)}%`;
         }}
-        onValueChange={(v) => console.log(v)}
+        onValueChange={(v) => {
+          setPopoverVisible(true);
+          console.log(v);
+        }}
         colors={argments.colors}
         showAnimation
       />
