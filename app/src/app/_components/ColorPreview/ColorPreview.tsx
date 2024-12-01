@@ -36,6 +36,10 @@ export const ColorPreview = (props: Props) => {
   const argments = formatArgments(props.chartData.data);
   return (
     <div className={`w-64 h-64 gap-4 relative ${props.className}`}>
+      <div className="absolute top-[49%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <p className="text-light-main-color/50 text-xs font-bold text-center">entropy</p>
+        <p className="text-light-main-color text-4xl font-bold text-center">{`${(props.chartData.centralValue * 100).toFixed(1)}%`}</p>
+      </div>
       <DonutChart
         className="w-64 h-64 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         data={argments.data}
@@ -47,10 +51,6 @@ export const ColorPreview = (props: Props) => {
         colors={argments.colors}
         showAnimation
       />
-      <div className="absolute top-[49%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <p className="text-light-main-color/50 text-xs font-bold text-center">entropy</p>
-        <p className="text-light-main-color text-4xl font-bold text-center">{`${(props.chartData.centralValue * 100).toFixed(1)}%`}</p>
-      </div>
     </div>
   );
 };
