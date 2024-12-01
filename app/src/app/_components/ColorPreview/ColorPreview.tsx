@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { DonutChart, Legend } from "@tremor/react";
+import { DonutChart } from "@tremor/react";
 
 type Data = {
   name: string;
@@ -40,18 +40,12 @@ export const ColorPreview = (props: Props) => {
         className="w-full h-64"
         data={argments.data}
         variant="donut"
-        label={`${props.chartData.centralValue.toString()}`}
+        label={`${(props.chartData.centralValue * 100).toFixed(1)}%`}
         valueFormatter={(val: number) => {
           return `${(val * 100).toFixed(1)}%`;
         }}
-        // onValueChange={(v) => console.log(v)} // このプロパティを有効にすると、outside clickでpopoverが閉じなくなる。
         colors={argments.colors}
         showAnimation
-      />
-      <Legend
-        categories={argments.categories}
-        colors={argments.colors}
-        className="w-full overflow-auto"
       />
     </div>
   );
