@@ -1,39 +1,51 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Toggle } from "./Toggle";
 
-const Template = () => {
-    const [value, setValue] = useState("Hue")
-
-    const list = [
-        {
-            value: "Hue",
-            label: "H"
-        },
-        {
-            value: "Saturation",
-            label: "S"
-        },
-        {
-            value: "Value",
-            label: "V"
-        }
-    ]
-
-    const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: string) => {
-        setValue(value)
-    }
-
-    return (
-        <Toggle list={list} value={value} onClick={onClick} />
-    )
-}
-
-export default {
+const meta: Meta<typeof Toggle> = {
     title: "Components/Toggle",
     component: Toggle,
     parameters: {
-        layout: "fullscreen"
-    }
+        layout: "centered"
+    },
 }
 
-export const Prototype = () => <Template />;
+export default meta;
+
+type Story = StoryObj<typeof Toggle>;
+
+/**
+ * Toggle
+ */
+export const Primary: Story = {
+    args: {
+        value: "Hue",
+        list: [
+            {
+                value: "Hue",
+                label: "H"
+            },
+            {
+                value: "Saturation",
+                label: "S"
+            },
+            {
+                value: "Value",
+                label: "V"
+            }
+        ]
+    },
+    render: args => {
+        const [selected, setSelected] = useState(
+            args.value
+        );
+
+        const onClick = (_: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: any) => {
+            setSelected(value)
+        }
+
+        return (
+            <Toggle value={selected} list={args.list} onClick={onClick} />
+        )
+    },
+}
