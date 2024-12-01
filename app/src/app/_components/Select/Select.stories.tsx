@@ -1,26 +1,35 @@
-import { Select } from "./Select";
 import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Select } from "./Select";
 
-const Template = () => {
-  const [value, setValue] = useState("red");
-  return (
-    <Select
-      options={["red", "blue", "green"]}
-      value={value}
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
-      className="w-full h-full"
-    />
-  );
-};
-
-export default {
+const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   parameters: {
-    layout: "fullscreen",
-  },
-};
+    layout: "centered"
+  }
+}
 
-export const Prototype = () => <Template />;
+export default meta;
+
+type Story = StoryObj<typeof Select>;
+
+export const Primary: Story = {
+  args: {
+    options: ["red", "blue", "green"],
+    value: "red",
+  },
+  render: args => {
+    const [selected, setSelected] = useState(
+      args.value
+    );
+
+    const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelected(e.target.value)
+    }
+
+    return (
+      <Select options={args.options} value={selected} onChange={onChange} />
+    )
+  }
+}

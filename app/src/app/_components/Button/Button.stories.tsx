@@ -1,15 +1,22 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 
-const Template = () => {
-  return <Button className="h-9">button</Button>;
-};
-
-export default {
+const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   parameters: {
-    layout: "fullscreen",
-  },
-};
+    layout: "centered"
+  }
+}
 
-export const Prototype = () => <Template />;
+export default meta;
+
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  render: args => {
+    return (
+      <Button className="h-9">button</Button>
+    );
+  }
+}

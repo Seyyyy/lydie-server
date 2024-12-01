@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import { ColorPreview } from "./ColorPreview";
 
 const mockProps = [
@@ -15,21 +16,25 @@ const mockProps = [
   { name: "purple-red", value: 0.045, color: "pink" },
 ];
 
-const Template = () => {
-  return (
-    <ColorPreview
-      className="w-96 h-96"
-      chartData={{ data: mockProps, centralValue: 0.1 }}
-    />
-  );
-};
-
-export default {
+const meta: Meta<typeof ColorPreview> = {
   title: "Components/ColorPreview",
   component: ColorPreview,
   parameters: {
-    layout: "fullscreen",
-  },
-};
+    layout: "centered"
+  }
+}
 
-export const Prototype = () => <Template />;
+export default meta;
+
+type Story = StoryObj<typeof ColorPreview>;
+
+export const Primary: Story = {
+  render: args => {
+    return (
+      <ColorPreview
+        className="w-96 h-96"
+        chartData={{ data: mockProps, centralValue: 0.1 }}
+      />
+    );
+  }
+}
