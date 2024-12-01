@@ -274,9 +274,9 @@ const Viewer = (props: {
           }]} onClick={onClick} />
         </div>
       </div>
-      <div className="w-full py-4 px-10 flex justify-start flex-col">
+      <div className="py-4 px-10 flex justify-center">
         <ColorPreview
-          className="w-full h-full"
+          className=""
           chartData={
             selected === "Hue"
               ? props.colorPreview.hue.chartData
