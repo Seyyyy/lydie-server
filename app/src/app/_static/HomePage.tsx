@@ -6,6 +6,7 @@ import {
   ColorPreview,
   Props as ColorPreviewProps,
 } from "@/app/_components/ColorPreview/ColorPreview";
+import { Toggle } from "@/app/_components/Toggle/Toggle"
 import { Select } from "@/app/_components/Select/Select";
 // import { Button } from "@/app/_components/Button/Button";
 import { UseImage } from "@/app/_models/image/useImage";
@@ -251,23 +252,26 @@ const Viewer = (props: {
     "Hue"
   );
 
+  const onClick = (_: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: "Hue" | "Saturation" | "Value") => {
+    setSelected(value)
+  }
+
   return (
     <>
       <div className="w-full h-[8%] flex items-center">
-        <div className="w-full h-9 flex items-center px-4">
-          <div className="w-[50%] h-9 flex justify-start items-center">
-            {/* <Button className="h-9">Save</Button> */}
-          </div>
-          <div className="w-[50%] h-9 flex justify-end items-center">
-            <Select
-              options={["Hue", "Saturation", "Value"]}
-              value={selected}
-              className="w-full h-full"
-              onChange={(e) => {
-                setSelected(e.target.value as "Hue" | "Saturation" | "Value");
-              }}
-            />
-          </div>
+        <div className="mx-auto">
+          <Toggle value={selected} list={[{
+            value: "Hue",
+            label: "H"
+          },
+          {
+            value: "Saturation",
+            label: "S"
+          },
+          {
+            value: "Value",
+            label: "V"
+          }]} onClick={onClick} />
         </div>
       </div>
       <div className="w-full py-4 px-10 flex justify-start flex-col">
@@ -331,14 +335,20 @@ export const HomePage = (props: { useImage: UseImage }) => {
   };
 
   return (
-    <div className="w-full h-[94%] bg-light-base-color">
-      <Easel
-        className="w-full h-[30%]"
-        onChange={handleChangeImage}
-        src={file ? URL.createObjectURL(file) : ""}
-        aria-label="Upload image"
-      />
-      <Viewer colorPreview={colorPreview} />
-    </div>
+    <>
+      <div className={`w-full h-[70vh]`}>
+        <Easel
+          className="w-full h-full"
+          onChange={handleChangeImage}
+          src={file ? URL.createObjectURL(file) : ""}
+          aria-label="Upload image"
+        />
+      </div>
+      <div className="mt-[-100px] bg-gradient-to-b from-light-base-color/0 from-[0px] via-light-base-color/80 via-[34px] to-light-base-color to-[74px] relative w-full">
+        <div className="mt-[24px] flex flex-col justify-center">
+          <Viewer colorPreview={colorPreview} />
+        </div>
+      </div>
+    </>
   );
 };

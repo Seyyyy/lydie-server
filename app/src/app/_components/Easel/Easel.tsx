@@ -6,19 +6,19 @@ type Props = {} & ComponentProps<"input">;
 
 export const Easel = (props: Props) => {
   return (
-    <div className={clsx(`bg-bgBack rounded-lg relative`, props.className)}>
+    <div className={clsx(`bg-bgBack relative`, props.className)}>
       <div className="absolute w-full h-full flex justify-center">
         {props.src ? (
           <Image
             // https://nextjs.org/docs/pages/api-reference/components/image#responsive-images
             src={props.src}
             alt={props.alt || "empty image"}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover"
             sizes="200px"
             fill
           />
         ) : (
-          <div className="m-4 w-[calc(100%-12px)] flex flex-col items-center justify-center border-2 border-dashed border-slate-400 rounded-lg">
+          <div className="w-full flex flex-col items-center justify-center bg-light-base-color-dark">
             <p className={`textButton text-gray-500`}>{`Please input file`}</p>
           </div>
         )}

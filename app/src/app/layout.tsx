@@ -14,12 +14,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-light-base-color h-screen w-screen">
-        <div className="w-full h-[6%] px-3 flex items-center justify-center">
-          <p className="text-light-main-color text-size-paragraph font-bold">
+        <div className="w-full h-[54px] flex items-center justify-between fixed z-10 bg-gradient-to-b from-black/75 px-6">
+          <p className="text-light-base-color-light text-size-paragraph font-bold">
             Lydie
           </p>
         </div>
         {children}
+        <p className="text-light-main-color text-center text-xs py-2">Lydie</p>
       </body>
     </html>
   );
