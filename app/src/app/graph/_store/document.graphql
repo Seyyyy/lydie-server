@@ -4,9 +4,16 @@ query GetStore($id: ID!) {
   }
 }
 
-mutation CreateStore($name: String!) {
-  createStore(name: $name) {
+mutation CreateStore($title: String!) {
+  createStore(title: $title) {
     id
-    name
+    title
+  }
+}
+
+query IndexStores($page: Int!, $pageSize: Int!) {
+  indexStores(page: $page, pageSize: $pageSize) {
+    id
+    title
   }
 }
