@@ -13,6 +13,7 @@ const config: CodegenConfig = {
       ],
       config: {
         rawRequest: true,
+        skipTypename: true,
       },
     },
     "src/gql/server.ts": {
