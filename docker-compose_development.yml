@@ -6,6 +6,8 @@ services:
     volumes:
       - .:/workspace
     tty: true
+    env_file:
+      - .docker.development.env
   app:
     image: lydie-server-app
     build:

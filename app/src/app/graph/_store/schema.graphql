@@ -1,12 +1,13 @@
 type Store {
   id: ID!
-  name: String
+  title: String!
 }
 
 type Query {
   getStore(id: ID!): Store
+  indexStores(page: Int, pageSize: Int): [Store!]
 }
 
 type Mutation {
-  createStore(name: String!): Store
+  createStore(title: String!): Store
 }

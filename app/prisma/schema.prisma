@@ -23,4 +23,15 @@ model Store {
     updatedAt DateTime @default(now())
     createdAt DateTime @default(now())
     user User @relation(fields: [userId], references: [id])
+    images    Image[]  // Imageモデルへのリレーション
+}
+
+model Image {
+    id String @id @default(uuid()) // 主キー
+    storeId String // StoreのID
+    filePath String // 画像のパス
+    fileExtension String // 画像の拡張子
+    updatedAt DateTime @default(now())
+    createdAt DateTime @default(now())
+    store Store @relation(fields: [storeId], references: [id]) // Storeへのリレーション
 }

@@ -1,19 +1,19 @@
-import { StorePage } from "./StorePage";
+import { StoresPage } from "./StoresPage";
 
 const Template = () => {
   return (
-    <StorePage
-      store={{
-        id: 1,
-        name: "initial store",
-      }}
+    <StoresPage
+      store={[{
+        id: "1",
+        title: "initial store",
+      }]}
     />
   );
 };
 
 export default {
   title: "Page/StorePage",
-  component: StorePage,
+  component: StoresPage,
   parameters: {
     layout: "fullscreen",
   },
