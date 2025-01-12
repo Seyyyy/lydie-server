@@ -1,6 +1,8 @@
 "use client";
 
 import { StoresPageProps, useStoresPage } from "./useStoresPage";
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const StoresPage = (props: StoresPageProps) => {
   const { storesPage, error, loading } = useStoresPage(props.store);
@@ -22,16 +24,20 @@ export const StoresPage = (props: StoresPageProps) => {
   }
 
   return (
-    <div>
-      {
-        storesPage.stores.map((store) => {
-          return (
-            <div key={store.id}>
-              <h1>{store.title}</h1>
-            </div>
-          );
-        })
-      }
+    <div className="container mx-auto px-2 pt-[62px]">
+      <ul className="grid grid-cols-2 gap-1">
+        {
+          storesPage.stores.map((store) => {
+            return (
+              <li key={store.id} className="relative w-full aspect-square group">
+                <Link href={`/stores/${store.id}`} passHref>
+                  <Image src="/sample.png" alt={store.title} fill className="object-cover rounded-lg" />
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                </Link>
+              </li>
+            );
+          })}
+      </ul>
     </div>
-  );
+  )
 };
