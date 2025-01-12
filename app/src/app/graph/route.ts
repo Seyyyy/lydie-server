@@ -3,11 +3,13 @@ import { Resolvers, typeDefs } from "@/gql/server";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import prisma from "@/app/_repository/db";
 import { resolvers as imageResolvers } from "./_image";
+import { resolvers as storeResolaves } from "./_store"
 import pino from "pino";
 
 const resolvers: Resolvers = {
   Query: {
     ...imageResolvers.Query,
+    ...storeResolaves.Query,
     getUser: async (_parent, args, _context, _info) => {
       console.log("GQLリクエスト", args);
       return {
