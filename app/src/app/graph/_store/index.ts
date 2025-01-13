@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/_repository/db"
 import { Resolvers } from "@/gql/server";
-
-const prisma = new PrismaClient();
 
 export const resolvers: Resolvers = {
     Query: {
@@ -14,8 +12,15 @@ export const resolvers: Resolvers = {
                 select: {
                     id: true,
                     title: true,
+                    image: {
+                        select: {
+                            filePath: true,
+                            fileExtension: true,
+                        },
+                    }
                 },
             });
+
             return stores;
         },
     },

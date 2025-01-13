@@ -1,6 +1,12 @@
 type Store {
   id: ID!
   title: String!
+  image: Image
+}
+
+type Image {
+  filePath: String!
+  fileExtension: String!
 }
 
 type Query {

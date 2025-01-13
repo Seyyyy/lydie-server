@@ -9,29 +9,30 @@ generator client {
 }
 
 model User {
-    id String @id @default(uuid()) // 主キー
-    name String // ユーザー名
-    store Store[] // Storeのリレーション
-    updatedAt DateTime @default(now())
-    createdAt DateTime @default(now())
+  id        String   @id @default(uuid())
+  name      String
+  store     Store[]
+  updatedAt DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 model Store {
-    id String @id @default(uuid()) // 主キー
-    userId String // UserのID
-    title String // 画像のタイトル
-    updatedAt DateTime @default(now())
-    createdAt DateTime @default(now())
-    user User @relation(fields: [userId], references: [id])
-    images    Image[]  // Imageモデルへのリレーション
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  updatedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  image     Image?
+  imageId   String?
 }
 
 model Image {
-    id String @id @default(uuid()) // 主キー
-    storeId String // StoreのID
-    filePath String // 画像のパス
-    fileExtension String // 画像の拡張子
-    updatedAt DateTime @default(now())
-    createdAt DateTime @default(now())
-    store Store @relation(fields: [storeId], references: [id]) // Storeへのリレーション
+  id            String   @id @default(uuid())
+  storeId       String   @unique
+  filePath      String
+  fileExtension String
+  updatedAt     DateTime @default(now())
+  createdAt     DateTime @default(now())
+  store         Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
 }

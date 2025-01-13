@@ -38,5 +38,12 @@ services:
       - 8080:8080
     depends_on:
       - db
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./app/tmp:/usr/share/nginx/html
+    ports:
+      - "8081:80"
 volumes:
   db:

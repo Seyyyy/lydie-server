@@ -25,25 +25,23 @@ async function main() {
     },
   });
 
-  const store = await prisma.store.create({
-    data: {
-      title: "My Store",
-      userId: user.id,
-    },
-  });
-
   let fileName = randomBytes(16).toString("hex") + "." + "png";
   const srcPath = join(__dirname, "../testdata/mock.png");
   const destPath = join(__dirname, "../tmp", fileName);
   await fs.copyFile(srcPath, destPath);
 
-  const image = await prisma.image.create({
+  const store = await prisma.store.create({
     data: {
-      filePath: destPath,
-      fileExtension: "png",
-      storeId: store.id,
+      title: "My Store",
+      userId: user.id,
+      image: {
+        create: {
+          filePath: fileName,
+          fileExtension: "png",
+        },
+      },
     },
-  })
+  });
 }
 
 main()
