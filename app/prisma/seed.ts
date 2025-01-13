@@ -36,7 +36,7 @@ async function main() {
       userId: user.id,
       image: {
         create: {
-          filePath: destPath,
+          filePath: fileName,
           fileExtension: "png",
         },
       },
