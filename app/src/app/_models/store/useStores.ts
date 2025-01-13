@@ -6,6 +6,10 @@ import { ENV } from "@/constants";
 interface StoreModel {
   id: string;
   title: string;
+  image?: {
+    filePath: string;
+    fileExtension: string;
+  } | null;
 }
 
 export type StoresModel = Array<StoreModel>;
