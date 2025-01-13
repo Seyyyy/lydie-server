@@ -15,5 +15,9 @@ query IndexStores($page: Int!, $pageSize: Int!) {
   indexStores(page: $page, pageSize: $pageSize) {
     id
     title
+    image {
+      filePath
+      fileExtension
+    }
   }
 }
