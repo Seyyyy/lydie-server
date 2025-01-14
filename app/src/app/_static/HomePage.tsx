@@ -294,13 +294,13 @@ const Viewer = (props: {
 /**
  * @param useImage カスタムフック
  */
-export const HomePage = (props: { useImage: UseImage, useStore: UseStore }) => {
+export const HomePage = (props: { useImage: UseImage, useStore?: UseStore }) => {
   const [file, setFile] = useState<File | null>(null);
   const [colorPreview, setColorPreview] = useState<{
     [key: string]: Pick<ColorPreviewProps, "chartData">;
   }>(initialColorPreview);
   const image = props.useImage();
-  const store = props.useStore();
+  const store = props.useStore ? props.useStore() : null;
 
   const handleClickCreateStore = async () => {
     if (file === null || image === null) {
@@ -313,6 +313,11 @@ export const HomePage = (props: { useImage: UseImage, useStore: UseStore }) => {
   }
 
   const createStore = async (file: File) => {
+    if (store === null) {
+      console.error("store is null")
+      return;
+    }
+
     await store.mutate.createStore(file.name, file);
     return;
   }
@@ -366,7 +371,11 @@ export const HomePage = (props: { useImage: UseImage, useStore: UseStore }) => {
           <Viewer colorPreview={colorPreview} />
         </div>
       </div>
-      <Button onClick={handleClickCreateStore} disabled={!file}>Create Store</Button>
+      {
+        store && (
+          <Button onClick={handleClickCreateStore} disabled={!file}>Create Store</Button>
+        )
+      }
     </>
   );
 };
