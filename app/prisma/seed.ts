@@ -3,6 +3,7 @@ import { randomBytes } from "crypto";
 import { join } from "path";
 import { promises as fs } from "fs";
 import { storeFactory } from "./seeds/store"
+import { mock } from "../src/constants"
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,7 @@ async function main() {
 
   const user = await prisma.user.create({
     data: {
+      id: mock.user.id,
       name: "Alice",
     },
   });

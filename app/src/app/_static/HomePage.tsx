@@ -7,9 +7,10 @@ import {
   Props as ColorPreviewProps,
 } from "@/app/_components/ColorPreview/ColorPreview";
 import { Toggle } from "@/app/_components/Toggle/Toggle"
-import { Select } from "@/app/_components/Select/Select";
-// import { Button } from "@/app/_components/Button/Button";
+// import { Select } from "@/app/_components/Select/Select";
+import { Button } from "@/app/_components/Button/Button";
 import { UseImage } from "@/app/_models/image/useImage";
+import { UseStore } from "@/app/_models/store/useStore";
 import { Parameter } from "@/gql/client";
 
 const initialColorPreview = {
@@ -293,12 +294,33 @@ const Viewer = (props: {
 /**
  * @param useImage カスタムフック
  */
-export const HomePage = (props: { useImage: UseImage }) => {
+export const HomePage = (props: { useImage: UseImage, useStore?: UseStore }) => {
   const [file, setFile] = useState<File | null>(null);
   const [colorPreview, setColorPreview] = useState<{
     [key: string]: Pick<ColorPreviewProps, "chartData">;
   }>(initialColorPreview);
   const image = props.useImage();
+  const store = props.useStore ? props.useStore() : null;
+
+  const handleClickCreateStore = async () => {
+    if (file === null || image === null) {
+      console.error("file is null")
+      return;
+    }
+
+    createStore(file);
+    return;
+  }
+
+  const createStore = async (file: File) => {
+    if (store === null) {
+      console.error("store is null")
+      return;
+    }
+
+    await store.mutate.createStore(file.name, file);
+    return;
+  }
 
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -349,6 +371,11 @@ export const HomePage = (props: { useImage: UseImage }) => {
           <Viewer colorPreview={colorPreview} />
         </div>
       </div>
+      {
+        store && (
+          <Button onClick={handleClickCreateStore} disabled={!file}>Create Store</Button>
+        )
+      }
     </>
   );
 };

@@ -4,10 +4,14 @@ query GetStore($id: ID!) {
   }
 }
 
-mutation CreateStore($title: String!) {
-  createStore(title: $title) {
+mutation CreateStore($title: String!, $filePath: String!) {
+  createStore(title: $title, filePath: $filePath) {
     id
     title
+    image {
+      filePath
+      fileExtension
+    }
   }
 }
 
