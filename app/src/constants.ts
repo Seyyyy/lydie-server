@@ -9,3 +9,9 @@ export const ENV = {
   // /blobでファイルを受け取ってgraphAPIで処理する
   TEMP_OBJECT_PATH: "tmp", // 一時ファイルの保存先
 };
+
+export const mock = {
+  user: {
+    id: "mock-user"
+  }
+}
