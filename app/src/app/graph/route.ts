@@ -19,6 +19,7 @@ const resolvers: Resolvers = {
     },
   },
   Mutation: {
+    ...storeResolaves.Mutation,
     createUser: async (_parent, args, _context, _info) => {
       const user = await prisma.user.create({
         data: {
