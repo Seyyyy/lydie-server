@@ -13,6 +13,9 @@ export const resolvers: Resolvers = {
             const stores = await prisma.store.findMany({
                 skip: (page - 1) * pageSize,
                 take: pageSize,
+                orderBy: {
+                    createdAt: 'desc',
+                },
                 select: {
                     id: true,
                     title: true,
