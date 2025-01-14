@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { randomBytes } from "crypto";
 import { join } from "path";
 import { promises as fs } from "fs";
+import { storeFactory } from "./seeds/store"
 
 const prisma = new PrismaClient();
 
@@ -30,18 +31,11 @@ async function main() {
   const destPath = join(__dirname, "../tmp", fileName);
   await fs.copyFile(srcPath, destPath);
 
-  const store = await prisma.store.create({
-    data: {
-      title: "My Store",
-      userId: user.id,
-      image: {
-        create: {
-          filePath: fileName,
-          fileExtension: "png",
-        },
-      },
-    },
-  });
+  for (let i = 0; i < 10; i++) {
+    const store = await prisma.store.create({
+      data: storeFactory(user.id, fileName),
+    });
+  }
 }
 
 main()
