@@ -65,7 +65,7 @@
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5",
-    "vitest": "^2.1.7"
+    "vitest": "^3.0.5"
   },
   "prisma": {
     "seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts"
